@@ -1,0 +1,28 @@
+# @package _global_
+
+defaults:
+  - override /data: mv_recon
+
+name: mv_recon
+
+eval_models:
+  - pi3
+  - pi3-finetune-release_mix-e100
+
+  - vggt
+  - vggt-finetune_full-full_data-refine_data_v2-e100
+
+eval_datasets:
+  - MegaDepth-X-easy
+  - MegaDepth-X-hard
+
+no_crop: True
+load_img_size: 518
+
+device: cuda
+
+verbose: False
+
+seed: 42
+
+save_suffix: null

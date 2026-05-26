@@ -1,0 +1,49 @@
+pi3:  # model_keyname
+  cfg:
+    _target_: models.fastmodel.Pi3
+    pretrained_model_name_or_path: /home/yl4355/nas/ckpts/Pi3.safetensors
+
+pi3-finetune-release_mix-e100:
+  cfg:
+    _target_: models.fastmodel.Pi3
+    pretrained_model_name_or_path: /share/phoenix/nfs05/S8/yl4355/datasets/MegaDepth-X/ckpts/pi3-FT_weight.pt
+  infer_cameras_w2c:       # default to `interfaces.model_keyname.infer_cameras_w2c`
+    _target_: interfaces.pi3.infer_cameras_w2c
+    _partial_: true
+  infer_cameras_w2c_and_global_feat:       # default to `interfaces.model_keyname.infer_cameras_w2c`
+    _target_: interfaces.pi3.infer_cameras_w2c_and_global_feat
+    _partial_: true
+  infer_mv_pointclouds:    # default to `interfaces.model_keyname.infer_mv_pointclouds`
+    _target_: interfaces.pi3.infer_mv_pointclouds
+    _partial_: true
+  infer_monodepth:         # default to `interfaces.model_keyname.infer_monodepth`
+    _target_: interfaces.pi3.infer_monodepth
+    _partial_: true
+  infer_videodepth:        # default to `interfaces.model_keyname.infer_videodepth`
+    _target_: interfaces.pi3.infer_videodepth
+    _partial_: true
+
+vggt:
+  cfg:
+    _target_: models.fastmodel.VGGT
+    pretrained_model_name_or_path: /home/yl4355/nas/ckpts/vggt.safetensors
+  infer_cameras_w2c:       # default to `interfaces.model_keyname.infer_cameras_w2c`
+    _target_: interfaces.vggt.infer_cameras_w2c
+    _partial_: true
+
+vggt-finetune_full-full_data-refine_data_v2-e100:
+  cfg:
+    _target_: models.fastmodel.VGGT
+    pretrained_model_name_or_path: /share/phoenix/nfs05/S8/yl4355/datasets/MegaDepth-X/ckpts/vggt-FT_weight.pt
+  infer_cameras_w2c:       # default to `interfaces.model_keyname.infer_cameras_w2c`
+    _target_: interfaces.vggt.infer_cameras_w2c
+    _partial_: true
+  infer_mv_pointclouds:    # default to `interfaces.model_keyname.infer_mv_pointclouds`
+    _target_: interfaces.vggt.infer_mv_pointclouds
+    _partial_: true
+  infer_monodepth:         # default to `interfaces.model_keyname.infer_monodepth`
+    _target_: interfaces.vggt.infer_monodepth
+    _partial_: true
+  infer_videodepth:        # default to `interfaces.model_keyname.infer_videodepth`
+    _target_: interfaces.vggt.infer_videodepth
+    _partial_: true

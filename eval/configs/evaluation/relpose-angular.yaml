@@ -1,0 +1,29 @@
+# @package _global_
+
+defaults:
+  - override /data: relpose-angular
+
+name: relpose-angular
+
+eval_models:
+  - pi3
+  - pi3-finetune-release_mix-e100
+
+  - vggt
+  - vggt-finetune_full-full_data-refine_data_v2-e100
+
+
+eval_datasets:
+  - MegaDepth-X-easy
+  - MegaDepth-X-hard
+
+no_crop: False
+load_img_size: 518
+
+device: cuda
+
+verbose: False
+
+seed: 42
+
+save_suffix: null

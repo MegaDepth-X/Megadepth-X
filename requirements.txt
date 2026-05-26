@@ -1,0 +1,28 @@
+einops
+evo==1.31.0
+h5py
+hydra-colorlog
+hydra-core==1.3.2
+huggingface_hub
+imageio-ffmpeg
+matplotlib
+mmcv==2.1.0
+mmengine==0.10.7
+-e git+https://github.com/open-mmlab/mmsegmentation.git@b040e147adfa027bbc071b624bedf0ae84dfc922#egg=mmsegmentation
+moge @ git+https://github.com/microsoft/MoGe.git@0286b495230a074aadf1c76cc5c679e943e5d1c6
+networkx==3.4.2
+numpy==1.26.4
+open3d
+opencv-python
+pandas
+piexif==1.1.3
+pillow
+plyfile
+pytubefix
+rootutils
+safetensors
+scikit-image
+scipy==1.15.3
+torch==2.5.1
+torchvision==0.20.1
+tqdm

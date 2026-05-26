@@ -1,0 +1,23 @@
+MegaDepth-X-easy:
+  cfg:
+    _target_: datasets.megadepth-x.MegaDepth_X
+    MegaDepth_X_DIR: /share/phoenix/nfs06/S9/yl4355/datasets/MegaDepth-X
+    sample_DIR: /share/phoenix/nfs05/S8/yl4355/datasets/MegaDepth-X/test_samples
+    sample_type: easy
+    sample_num: 1
+  sampling:
+    strategy: all
+  seq_id_map: datasets/seq-id-maps/MegaDepth-X_test.json
+  metric_thresholds: [5, 15, 30]
+
+MegaDepth-X-hard:
+  cfg:
+    _target_: datasets.megadepth-x.MegaDepth_X
+    MegaDepth_X_DIR: /share/phoenix/nfs06/S9/yl4355/datasets/MegaDepth-X
+    sample_DIR: /share/phoenix/nfs05/S8/yl4355/datasets/MegaDepth-X/test_samples
+    sample_type: hard
+    sample_num: 1
+  sampling:
+    strategy: all
+  seq_id_map: datasets/seq-id-maps/MegaDepth-X_test.json
+  metric_thresholds: [5, 15, 30]
