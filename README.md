@@ -97,12 +97,6 @@ Edit dataset paths in these configs first:
 - eval/configs/data/mv_recon.yaml
 - Pre-sampled test cases: [test_samples](https://huggingface.co/datasets/y-u-a-n-l-i/MegaDepth-X/tree/main/test_samples). Please set `MegaDepth_X_DIR` and `sample_DIR` in `eval/configs/data/relpose-angular.yaml` and `eval/configs/data/mv_recon.yaml` to the local paths of MegaDepth-X and the test samples.
 
-Relative pose evaluation (single GPU):
-
-```bash
-python eval/relpose/eval_angle.py evaluation=relpose-angular
-```
-
 Relative pose evaluation (multi GPU, DDP):
 
 ```bash

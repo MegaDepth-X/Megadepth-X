@@ -10,7 +10,7 @@ eval_models:
   - pi3-finetune-release_mix-e100
 
   - vggt
-  - vggt-finetune_full-full_data-refine_data_v2-e100
+  - vggt-finetune-release_mix-e100
 
 
 eval_datasets:
