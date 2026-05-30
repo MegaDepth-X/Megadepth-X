@@ -100,19 +100,21 @@ Edit dataset paths in these configs first:
 Relative pose evaluation (multi GPU, DDP):
 
 ```bash
-torchrun --nproc_per_node=<N> eval/relpose/eval_angle_mp.py evaluation=relpose-angular
+cd eval
+torchrun --nproc_per_node=<N> relpose/eval_angle_mp.py
 ```
 
 Multi-view reconstruction evaluation (multi GPU, DDP):
 
 ```bash
-torchrun --nproc_per_node=<N> eval/mv_recon/eval_mp.py evaluation=mv_recon
+cd eval
+torchrun --nproc_per_node=<N> mv_recon/eval_mp.py
 ```
 
 Outputs are written to:
 
 ```
-outputs/<name>/<model>/<dataset>/
+eval/outputs/<name>/<model>/<dataset>/
 ```
 
 where <name> is relpose-angular or mv_recon (see eval/configs/general/default.yaml). Per-sequence CSV metrics are saved under _seq_metrics.
