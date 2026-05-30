@@ -127,12 +127,12 @@ def main():
     parser.add_argument(
         "--colmap_root",
         required=True,
-        help="Path to a COLMAP reconstruction root (e.g. debug/Aachen_Cathedral/1).",
+        help="Path to a COLMAP reconstruction root (e.g. <dataset_root>/Aachen_Cathedral/1).",
     )
     parser.add_argument(
         "--images_dir",
         default=None,
-        help="Optional image directory (default: <colmap_root>/images_w_exif).",
+        help="Optional image directory (default: <colmap_root>/images).",
     )
     parser.add_argument(
         "--depth_dir",

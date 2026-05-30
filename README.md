@@ -24,14 +24,21 @@ This repository contains scripts for depth post-processing, presampling, and eva
 - eval: hydra-based evaluation for relative pose (angular error) and multi-view reconstruction metrics.
 
 ## Dependencies
-Install dependencies via requirements file:
+This project is based on Python 3.10. Install dependencies via requirements file:
 
 ```bash
 pip install -r requirements.txt
+pip install -U openmim
+mim install mmengine
+mim install mmcv==2.1.0 --no-cache-dir --no-build-isolation
+git clone -b main https://github.com/open-mmlab/mmsegmentation.git
+cd mmsegmentation
+pip install -v -e .
 ```
 
 ## Data layout (per scene)
 SfM is obtained via [MASt3R](https://github.com/naver/mast3r) and [Doppelgangers++](https://github.com/doppelgangers25/doppelgangers-plusplus).
+MVS is obtained via [COLMAP-MVS](https://colmap.github.io/cli.html#example).
 
 Example structure:
 
@@ -41,8 +48,7 @@ Example structure:
 |   |-- images/
 |   |-- stereo/
 |   |   `-- depth_maps/
-|   |-- sparse/
-|   `-- depth/
+|   `-- sparse/
 `-- database.db
 ```
 
@@ -84,10 +90,12 @@ Notes:
 
 ## Evaluation
 This evaluation code is based on [recons_eval](https://github.com/ZhouTimeMachine/recons_eval).
+- Checkpoints for Pi3 and VGGT: [ckpts](https://huggingface.co/datasets/y-u-a-n-l-i/MegaDepth-X/tree/main/ckpts). Please set `pretrained_model_name_or_path` in `eval/configs/model/default.yaml` to the local path of the pretrained or fine-tuned model.
 
 Edit dataset paths in these configs first:
 - eval/configs/data/relpose-angular.yaml
 - eval/configs/data/mv_recon.yaml
+- Pre-sampled test cases: [test_samples](https://huggingface.co/datasets/y-u-a-n-l-i/MegaDepth-X/tree/main/test_samples). Please set `MegaDepth_X_DIR` and `sample_DIR` in `eval/configs/data/relpose-angular.yaml` and `eval/configs/data/mv_recon.yaml` to the local paths of MegaDepth-X and the test samples.
 
 Relative pose evaluation (single GPU):
 

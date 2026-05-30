@@ -31,7 +31,7 @@ vggt:
     _target_: interfaces.vggt.infer_cameras_w2c
     _partial_: true
 
-vggt-finetune_full-full_data-refine_data_v2-e100:
+vggt-finetune-release_mix-e100:
   cfg:
     _target_: models.fastmodel.VGGT
     pretrained_model_name_or_path: /share/phoenix/nfs05/S8/yl4355/datasets/MegaDepth-X/ckpts/vggt-FT_weight.pt

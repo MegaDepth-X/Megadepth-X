@@ -34,7 +34,6 @@ class MegaDepth_X(Dataset):
         min_num_images: int = 24,
         sample_type: str = "sparse_only",
         sample_num = 5,
-        limit_id_list = None,
     ):
         super().__init__()
 
@@ -52,11 +51,6 @@ class MegaDepth_X(Dataset):
         if sample_DIR is None:
             raise ValueError("sample_DIR must be specified.")
         self.invalid_sequence = [] # set any invalid sequence names here
-
-        if limit_id_list is not None:
-            with open(limit_id_list, 'r') as f:
-                limit_ids = json.load(f)
-            logging.info(f"Using limited id list with {len(limit_ids)} sequences.")
         
         scene_recon_list = []
         scene_recon_list_raw = list(json.load(open(osp.join(sample_DIR, f"{split}_recons.json"), 'r')))
@@ -67,9 +61,6 @@ class MegaDepth_X(Dataset):
                 cleaned_scene_recon_list.append(scene_recon_name)
         for x in cleaned_scene_recon_list:
             for i in range(self.sample_num):
-                if limit_id_list is not None:
-                    if f"{x}>{i}" not in limit_ids:
-                        continue
                 scene_recon_list.append(f"{x}>{i}")
 
         logging.info(f"scene_recon_list: {scene_recon_list}")
@@ -269,10 +260,12 @@ class MegaDepth_X(Dataset):
 
         for current_idx, node in enumerate(selected_path):
             scene_name, recon = sequence_name.split(">")
-            image_path = osp.join(self.MegaDepth_X_DIR, "depth_raw", scene_name, recon, "images_w_exif", node)
+            image_path = osp.join(self.MegaDepth_X_DIR, scene_name, recon, "images_w_exif", node)
+            if not os.path.exists(image_path):
+                image_path = osp.join(self.MegaDepth_X_DIR, scene_name, recon, "images", node)
             image, orientation, w_o, h_o = read_image_pil(image_path)
 
-            depth_path = osp.join(self.MegaDepth_X_DIR, "depth", scene_name, recon, "depth", sample["imgs"][node]["depth_path"])
+            depth_path = osp.join(self.MegaDepth_X_DIR, scene_name, recon, "depths", sample["imgs"][node]["depth_path"])
             if not os.path.exists(depth_path):
                 if ".npy" in depth_path:
                     depth_path = depth_path.replace(".npy", ".npz")

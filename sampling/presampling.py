@@ -160,6 +160,7 @@ def sample_N_images(
             break
 
     if sampled_cases:
+        print(f"Total: {len(sampled_cases)} samples.")
         np.savez_compressed(os.path.join(dst_scene_dir, f"{N_imgs}_mix.npz"), sampled_cases=sampled_cases)
 
 
@@ -335,7 +336,7 @@ def sample_scene(
         f"connected components, the largest component has {num_nodes_max} nodes."
     )
     start = time.time()
-    if not (
+    if (
         Sample_State.img_meta["graph"].number_of_nodes() < DEFAULT_N_IMGS
         or original_edge_num < (DEFAULT_N_IMGS - 1)
     ):

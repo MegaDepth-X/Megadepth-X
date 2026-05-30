@@ -89,5 +89,4 @@ project.lock.json
 
 # End of standard .gitignore
 debug/
-train_dataset/
 outputs/
